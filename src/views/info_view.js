@@ -14,9 +14,14 @@ InfoView.prototype.bindEvents = function(){
 
 InfoView.prototype.render = function(country){
     this.container.innerHTML = ''
+
     const name = document.createElement('h2');
     name.textContent = country.name;
     this.container.appendChild(name) 
+
+    const img = document.createElement('img')
+    img.src = country.flag
+    this.container.appendChild(img)
 }
 
 
