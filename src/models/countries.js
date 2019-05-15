@@ -8,7 +8,6 @@ const Countries = function(){
 Countries.prototype.getData = function(){
     const request = new RequestHelper('https://restcountries.eu/rest/v2/all');
     request.get((data) => {
-        console.log("data", data)
         this.text = data;
         PubSub.publish('Countries:country-loaded', this.text)
         console.log('Countries published Countries:country-loaded');
@@ -19,7 +18,12 @@ Countries.prototype.getData = function(){
             console.log('Countries subscribed to SelectView:change')
         })
     })
+}
 
+Countries.prototype.publishCountriesDetail = function(countryIndex){
+    const selectedCountry = this.text[countryIndex];
+    PubSub.publish('Countries:selected-country-ready', selectedCountry)
+    console.log('Countries has published Countries:selected-country-ready')
 }
 
 module.exports = Countries;

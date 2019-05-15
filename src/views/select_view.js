@@ -8,15 +8,14 @@ const SelectView = function(element){
 SelectView.prototype.bindEvents = function(){
     PubSub.subscribe('Countries:country-loaded', (event) => {
         const allCountries = event.detail;
-        this.populate(allCountries)
-        console.log(allCountries)
-        
+        this.populate(allCountries)        
         console.log('SelectView is subscribed to Countries:country-loaded')
     });
 
     this.element.addEventListener('change', (event) => {
         const selectedChange = event.target.value;
         PubSub.publish('SelectView:change', selectedChange);
+        console.log('SelectView published SelectView:change')
     });
 };
 
