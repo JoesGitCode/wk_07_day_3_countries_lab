@@ -22,6 +22,10 @@ InfoView.prototype.render = function(country){
     const img = document.createElement('img')
     img.src = country.flag
     this.container.appendChild(img)
+
+    const region = document.createElement('h3')
+    region.textContent = `Region: ${country.region}`;
+    this.container.appendChild(region)
 }
 
 
